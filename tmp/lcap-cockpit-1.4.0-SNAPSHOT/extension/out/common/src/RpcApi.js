@@ -1,0 +1,46 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UIEndPoint = exports.ExtEndPoint = void 0;
+var ExtEndPoint;
+(function (ExtEndPoint) {
+    ExtEndPoint["createItem"] = "items.create";
+    ExtEndPoint["visitItem"] = "items.read";
+    ExtEndPoint["deleteItem"] = "items.delete";
+    ExtEndPoint["getItemsByCate"] = "items.getByCate";
+    ExtEndPoint["getAllItems"] = "items.getAll";
+    ExtEndPoint["getDependencies"] = "items.getDependencies";
+    ExtEndPoint["getAdjList"] = "items.getAdjList";
+    ExtEndPoint["publishProj"] = "projects.publish";
+    ExtEndPoint["deployProj"] = "projects.deploy";
+    ExtEndPoint["runProj"] = "projects.run";
+    ExtEndPoint["buildProj"] = "projects.build";
+    ExtEndPoint["getProjInfo"] = "projects.info";
+    ExtEndPoint["getDeployInfo"] = "projects.deployInfo";
+    ExtEndPoint["taskState"] = "tasks.state";
+    ExtEndPoint["terminateTask"] = "tasks.terminate";
+    ExtEndPoint["lifeCycleStatus"] = "lifeCycle.status";
+    ExtEndPoint["lifeCyclePull"] = "lifeCycle.pull";
+    ExtEndPoint["lifeCyclePush"] = "lifeCycle.push";
+    ExtEndPoint["lifeCycleDiscard"] = "lifeCycle.discard";
+    ExtEndPoint["lifeCycleGetRemote"] = "lifeCycle.getRemote";
+    ExtEndPoint["lifeCycleAddRemote"] = "lifeCycle.addRemote";
+    ExtEndPoint["lifeCycleOpenUI"] = "lifeCycle.openUI";
+    ExtEndPoint["lifeCycleGetDeeplinkUrl"] = "lifeCycle.getDeeplinkUrl";
+    ExtEndPoint["lifeCycleCountChanges"] = "lifeCycle.countChanges";
+    ExtEndPoint["invokeGuidedDev"] = "guidedDev.invoke";
+    ExtEndPoint["openUrl"] = "vscode.open";
+})(ExtEndPoint = exports.ExtEndPoint || (exports.ExtEndPoint = {}));
+var UIEndPoint;
+(function (UIEndPoint) {
+    UIEndPoint["notifyTaskState"] = "taskStates.notify";
+    UIEndPoint["notifyItem"] = "items.notify";
+    UIEndPoint["notifyItemsByCate"] = "items.notifyByCate";
+    UIEndPoint["notifyAllItems"] = "items.notifyAll";
+    UIEndPoint["notifyProjInfo"] = "projects.info";
+    UIEndPoint["notifyDeployInfo"] = "projects.deployInfo";
+    UIEndPoint["notifyItemState"] = "itemStates.notify";
+    UIEndPoint["notifyLifeCycleStatus"] = "lifeCycle.status.notify";
+    UIEndPoint["notifyCountChanges"] = "lifeCycle.countChanges.notify";
+    UIEndPoint["notifyRemoteUrl"] = "lifeCycle.remoteUrl.notify";
+})(UIEndPoint = exports.UIEndPoint || (exports.UIEndPoint = {}));
+//# sourceMappingURL=RpcApi.js.map

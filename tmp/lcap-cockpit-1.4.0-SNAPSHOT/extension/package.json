@@ -1,0 +1,198 @@
+{
+  "name": "lcap-cockpit",
+  "description": "LCAP Cockpit",
+  "version": "1.4.0-SNAPSHOT",
+  "publisher": "SAPSE",
+  "author": {
+    "name": "SAP SE"
+  },
+  "engines": {
+    "vscode": "^1.47.0",
+    "node": ">=12.13.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "extensionDependencies": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.tools.sap/LCAP/cockpit.git"
+  },
+  "main": "./out/backend/src/extension.js",
+  "scripts": {
+    "compile": "npm run lint && tsc -p .",
+    "lint": "eslint src",
+    "frontend": "bash ../../bin/frontend.sh",
+    "package": "vsce package --ignoreFile .vscodeignore",
+    "test": "jest --config jest-unit.json --coverage=false",
+    "test:coverage": "jest --config jest-unit.json"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "lcap.home.openCockpit",
+        "title": "Open Home",
+        "category": "LCAP",
+        "icon": {
+          "light": "./media/homepage-btn-light.svg",
+          "dark": "./media/homepage-btn-dark.svg"
+        }
+      },
+      {
+        "command": "lcap.home.openStoryboard",
+        "title": "Open Storyboard",
+        "category": "LCAP",
+        "icon": {
+          "light": "./media/storyboard-btn-light.svg",
+          "dark": "./media/storyboard-btn-dark.svg"
+        }
+      },
+      {
+        "command": "lcap.crud.delete",
+        "category": "LCAP Home",
+        "title": "Delete an item"
+      },
+      {
+        "command": "lcap.crud.create",
+        "category": "LCAP Home",
+        "title": "Create an item"
+      },
+      {
+        "command": "lcap.home.preview",
+        "category": "LCAP Home",
+        "title": "Start Preview"
+      },
+      {
+        "command": "lcap.home.deploy",
+        "category": "LCAP Home",
+        "title": "Start Deploy"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "homepageIsVisible == 1",
+          "command": "lcap.home.openStoryboard",
+          "group": "3_open"
+        },
+        {
+          "when": "homepageIsVisible != 1",
+          "command": "lcap.home.openCockpit",
+          "group": "3_open"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "lcap.home.openStoryboard",
+          "when": "false"
+        },
+        {
+          "command": "lcap.home.preview",
+          "when": "false"
+        },
+        {
+          "command": "lcap.home.deploy",
+          "when": "false"
+        },
+        {
+          "command": "lcap.crud.create",
+          "when": "false"
+        },
+        {
+          "command": "lcap.crud.delete",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "LCAP Cockpit Configuration",
+      "properties": {
+        "lcap-cockpit.enableSapWebAnalytics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable collecting usage analytics data for Homepage.",
+          "scope": "resource"
+        },
+        "lcap.isHomeVisibile": {
+          "type": "boolean",
+          "default": false,
+          "description": "Tracks whether the LCAP Cockpit is visible"
+        },
+        "lcap.homeLogging.loggingLevel": {
+          "type": "string",
+          "enum": [
+            "off",
+            "fatal",
+            "error",
+            "warn",
+            "info",
+            "debug",
+            "trace"
+          ],
+          "default": "info",
+          "description": "Logging verbosity: None < fatal < error < warn < info < debug < trace.",
+          "scope": "window"
+        },
+        "lcap.homeLogging.srcLocTracking": {
+          "type": "boolean",
+          "default": false,
+          "description": "ONLY USE IN DEBUGGING SCENARIOS",
+          "scope": "window"
+        }
+      }
+    },
+    "taskDefinitions": [
+      {
+        "type": "LCAP Project",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The LCAP Project task to execute"
+          }
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "@sap-devx/webview-rpc": "0.2.3",
+    "@sap/swa-for-sapbas-vsx": "^1.2.15",
+    "@vscode-logging/logger": "1.2.3",
+    "@vscode-logging/wrapper": "1.0.1",
+    "project": "file:../project/artifact-management.tgz"
+  },
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@sap-devx/app-studio-toolkit-types": "^1.4.0",
+    "@types/chai": "^4.2.18",
+    "@types/glob": "^7.1.3",
+    "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.165",
+    "@types/node": "^14.6.0",
+    "@types/sinon": "^9.0.11",
+    "@types/vscode": "^1.47.0",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "@vscode-logging/types": "^0.1.3",
+    "chai": "^4.3.4",
+    "eslint": "^7.24.0",
+    "glob": "^7.1.7",
+    "jest": "^27.0.6",
+    "jest-junit": "^12.2.0",
+    "nyc": "^15.1.0",
+    "sinon": "^10.0.1",
+    "source-map-support": "^0.5.19",
+    "trace-unhandled": "^2.0.1",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "vsce": "^1.83.0",
+    "vscode-test": "^1.5.2"
+  }
+}

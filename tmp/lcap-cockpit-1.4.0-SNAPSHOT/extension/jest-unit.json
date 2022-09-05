@@ -1,0 +1,72 @@
+{
+  "testEnvironment": "node",
+  "preset": "ts-jest",
+  "collectCoverage": true,
+  "reporters": [
+    "default",
+    [
+      "jest-junit",
+      {
+        "suiteName": "jest tests",
+        "outputName": "test-unit-report.xml",
+        "outputDirectory": "reports/sonar/",
+        "classNameTemplate": "{classname}-{title}",
+        "titleTemplate": "{classname}-{title}",
+        "ancestorSeparator": " › ",
+        "usePathForSuiteName": "true"
+      }
+    ]
+  ],
+  "automock": false,
+  "bail": false,
+  "clearMocks": true,
+  "moduleDirectories": [
+    "node_modules"
+  ],
+  "modulePathIgnorePatterns": [],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ],
+  "resetMocks": false,
+  "resetModules": false,
+  "testMatch": [
+    "**/*.spec.ts"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/.vscode-test/"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!**/src/**/*.d.ts",
+    "!**/test/**/*",
+    "!**/src/**/*.d.ts",
+    "!**/Validator/**/*"
+  ],
+  "coverageDirectory": "./reports/coverage/",
+  "coverageReporters": [
+    "lcov",
+    "text"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 85,
+      "functions": 85,
+      "lines": 85,
+      "statements": 85
+    }
+  },
+  "verbose": true,
+  "moduleNameMapper": {
+    "^vscode$": "<rootDir>/out/backend/src/test/mocks/mockVSCode",
+    "@vscode-logging/wrapper": "<rootDir>/out/backend/src/test/mocks/mockVSCodeLoggingWrapper"
+  },
+  "setupFiles": [
+    "trace-unhandled/register"
+  ]
+}

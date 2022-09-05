@@ -1,0 +1,770 @@
+[
+  {
+    "type": "com.sap.cds/Entity",
+    "name": "Employee",
+    "ref": "lcaponboardex.Employee",
+    "namespace": "lcaponboardex",
+    "path": "db/schema.cds",
+    "external": false,
+    "tags": [
+      "item",
+      "cap",
+      "db"
+    ],
+    "links": [
+      {
+        "linkType": "ASSOCIATES_TO_ONE",
+        "type": "com.sap.cds/Entity",
+        "ref": "lcaponboardex.Department"
+      },
+      {
+        "linkType": "HAS_TRANSITIVE_DEPENDENCY",
+        "type": "com.sap.cap/Service",
+        "ref": "/service/lcaponboardex"
+      },
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "org.oasis-open.odata/Entity",
+        "ref": "/service/lcaponboardex/Employee"
+      }
+    ]
+  },
+  {
+    "type": "com.sap.cds/Entity",
+    "name": "Department",
+    "ref": "lcaponboardex.Department",
+    "namespace": "lcaponboardex",
+    "path": "db/schema.cds",
+    "external": false,
+    "tags": [
+      "item",
+      "cap",
+      "db"
+    ],
+    "links": [
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "mimetype/csv",
+        "ref": "db/data/lcaponboardex-Department.csv"
+      },
+      {
+        "linkType": "HAS_TRANSITIVE_DEPENDENCY",
+        "type": "com.sap.cap/Service",
+        "ref": "/service/lcaponboardex"
+      },
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "org.oasis-open.odata/Entity",
+        "ref": "/service/lcaponboardex/Department"
+      }
+    ]
+  },
+  {
+    "type": "mimetype/csv",
+    "name": "Department",
+    "ref": "db/data/lcaponboardex-Department.csv",
+    "path": "db/data/lcaponboardex-Department.csv",
+    "external": false,
+    "tags": [
+      "item",
+      "cap",
+      "db"
+    ],
+    "links": [
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "com.sap.cds/Entity",
+        "ref": "lcaponboardex.Department"
+      }
+    ]
+  },
+  {
+    "type": "com.sap.cap/Service",
+    "name": "lcaponboardexService",
+    "ref": "/service/lcaponboardex",
+    "path": "srv/service.cds",
+    "external": false,
+    "tags": [
+      "item",
+      "cap",
+      "srv"
+    ],
+    "links": [
+      {
+        "linkType": "TRANSITIVELY_DEPENDS_ON",
+        "type": "com.sap.cds/Entity",
+        "ref": "lcaponboardex.Department"
+      },
+      {
+        "linkType": "TRANSITIVELY_DEPENDS_ON",
+        "type": "com.sap.cds/Entity",
+        "ref": "lcaponboardex.Employee"
+      },
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "org.oasis-open.odata/Entity",
+        "ref": "/service/lcaponboardex/Department"
+      },
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "org.oasis-open.odata/Entity",
+        "ref": "/service/lcaponboardex/Employee"
+      },
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "com.sap.mdk/Application",
+        "ref": "app/MDKLCAPOnboardExApp/Application.app"
+      },
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "com.sap.mdk/Application",
+        "ref": "app/MDKLCAPOnboardExTaskUI/Application.app"
+      }
+    ]
+  },
+  {
+    "type": "org.oasis-open.odata/Entity",
+    "name": "Department",
+    "ref": "/service/lcaponboardex/Department",
+    "path": "srv/service.cds",
+    "external": false,
+    "tags": [
+      "item",
+      "cap",
+      "srv"
+    ],
+    "links": [
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "com.sap.cap/Service",
+        "ref": "/service/lcaponboardex"
+      },
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "com.sap.cds/Entity",
+        "ref": "lcaponboardex.Department"
+      },
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "com.sap.workflow/Model",
+        "ref": "workflow/workflows/lcaponboardex.workflow"
+      }
+    ]
+  },
+  {
+    "type": "org.oasis-open.odata/Entity",
+    "name": "Employee",
+    "ref": "/service/lcaponboardex/Employee",
+    "path": "srv/service.cds",
+    "external": false,
+    "tags": [
+      "item",
+      "cap",
+      "workflowTaskEnabled"
+    ],
+    "links": [
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "com.sap.cap/Service",
+        "ref": "/service/lcaponboardex"
+      },
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "com.sap.cds/Entity",
+        "ref": "lcaponboardex.Employee"
+      },
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "com.sap.workflow/Model",
+        "ref": "workflow/workflows/lcaponboardex.workflow"
+      },
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "com.sap.workflow/Model",
+        "ref": "workflow/workflows/lcaponboardex.workflow"
+      }
+    ]
+  },
+  {
+    "type": "com.sap.workflow/Model",
+    "name": "lcaponboardex",
+    "ref": "workflow/workflows/lcaponboardex.workflow",
+    "path": "workflow/workflows/lcaponboardex.workflow",
+    "tags": [
+      "item",
+      "workflow"
+    ],
+    "links": [
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "com.sap.mdk/TaskUI",
+        "ref": "app/MDKLCAPOnboardExTaskUI/.project.json"
+      },
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "org.oasis-open.odata/Entity",
+        "ref": "/service/lcaponboardex/Department"
+      },
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "org.oasis-open.odata/Entity",
+        "ref": "/service/lcaponboardex/Employee"
+      },
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "org.oasis-open.odata/Entity",
+        "ref": "/service/lcaponboardex/Employee"
+      }
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Rule",
+    "ref": "app/MDKLCAPOnboardExApp/Rules/OnWillUpdate.js",
+    "name": "OnWillUpdate.js",
+    "path": "app/MDKLCAPOnboardExApp/Rules/OnWillUpdate.js",
+    "tags": [
+      "item",
+      "rule",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/I18n",
+    "ref": "app/MDKLCAPOnboardExApp/i18n/i18n.properties",
+    "name": "i18n.properties",
+    "path": "app/MDKLCAPOnboardExApp/i18n/i18n.properties",
+    "tags": [
+      "item",
+      "i18n",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Style",
+    "ref": "app/MDKLCAPOnboardExApp/Styles/Styles.less",
+    "name": "Styles.less",
+    "path": "app/MDKLCAPOnboardExApp/Styles/Styles.less",
+    "tags": [
+      "item",
+      "style",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Page",
+    "ref": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_Create.page",
+    "name": "Employee_Create",
+    "path": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_Create.page",
+    "tags": [
+      "item",
+      "page",
+      "ui",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Page",
+    "ref": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_Detail.page",
+    "name": "Employee_Detail",
+    "path": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_Detail.page",
+    "tags": [
+      "item",
+      "page",
+      "ui",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Page",
+    "ref": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_Edit.page",
+    "name": "Employee_Edit",
+    "path": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_Edit.page",
+    "tags": [
+      "item",
+      "page",
+      "ui",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Page",
+    "ref": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_List.page",
+    "name": "Employee_List",
+    "path": "app/MDKLCAPOnboardExApp/Pages/Employee/Employee_List.page",
+    "tags": [
+      "item",
+      "page",
+      "ui",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Service",
+    "ref": "../service/lcaponboardex/",
+    "name": "../service/lcaponboardex/",
+    "path": "app/MDKLCAPOnboardExApp/Services/service1.service",
+    "tags": [
+      "item",
+      "service",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Global",
+    "ref": "app/MDKLCAPOnboardExApp/Globals/AppDefinition_Version.global",
+    "name": "AppDefinition_Version.global",
+    "path": "app/MDKLCAPOnboardExApp/Globals/AppDefinition_Version.global",
+    "tags": [
+      "item",
+      "global",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/CloseModalPage_Cancel.action",
+    "name": "CloseModalPage_Cancel.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/CloseModalPage_Cancel.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/CloseModalPage_Complete.action",
+    "name": "CloseModalPage_Complete.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/CloseModalPage_Complete.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/ClosePage.action",
+    "name": "ClosePage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/ClosePage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/CreateEntityFailureMessage.action",
+    "name": "CreateEntityFailureMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/CreateEntityFailureMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/CreateEntitySuccessMessage.action",
+    "name": "CreateEntitySuccessMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/CreateEntitySuccessMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/DeleteEntityFailureMessage.action",
+    "name": "DeleteEntityFailureMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/DeleteEntityFailureMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/DeleteEntitySuccessMessage.action",
+    "name": "DeleteEntitySuccessMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/DeleteEntitySuccessMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Employee/Employee_CreateEntity.action",
+    "name": "Employee_CreateEntity.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Employee/Employee_CreateEntity.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Employee/Employee_DeleteEntity.action",
+    "name": "Employee_DeleteEntity.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Employee/Employee_DeleteEntity.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Employee/Employee_UpdateEntity.action",
+    "name": "Employee_UpdateEntity.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Employee/Employee_UpdateEntity.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_Create.action",
+    "name": "NavToEmployee_Create.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_Create.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_Detail.action",
+    "name": "NavToEmployee_Detail.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_Detail.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_Edit.action",
+    "name": "NavToEmployee_Edit.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_Edit.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_List.action",
+    "name": "NavToEmployee_List.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Employee/NavToEmployee_List.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Logout.action",
+    "name": "Logout.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Logout.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Service/InitializeOnline.action",
+    "name": "InitializeOnline.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Service/InitializeOnline.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Service/InitializeOnlineFailureMessage.action",
+    "name": "InitializeOnlineFailureMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Service/InitializeOnlineFailureMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/Service/InitializeOnlineSuccessMessage.action",
+    "name": "InitializeOnlineSuccessMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/Service/InitializeOnlineSuccessMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/UpdateEntityFailureMessage.action",
+    "name": "UpdateEntityFailureMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/UpdateEntityFailureMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExApp/Actions/UpdateEntitySuccessMessage.action",
+    "name": "UpdateEntitySuccessMessage.action",
+    "path": "app/MDKLCAPOnboardExApp/Actions/UpdateEntitySuccessMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Application",
+    "ref": "app/MDKLCAPOnboardExApp/Application.app",
+    "name": "MDKLCAPOnboardExApp",
+    "path": "app/MDKLCAPOnboardExApp/Application.app",
+    "tags": [
+      "item",
+      "application",
+      "mdk"
+    ],
+    "sourceTemplate": {
+      "id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+      "version": "1.40.12"
+    },
+    "links": [
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "com.sap.cap/Service",
+        "ref": "/service/lcaponboardex"
+      }
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Rule",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Rules/OnWillUpdate.js",
+    "name": "OnWillUpdate.js",
+    "path": "app/MDKLCAPOnboardExTaskUI/Rules/OnWillUpdate.js",
+    "tags": [
+      "item",
+      "rule",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/I18n",
+    "ref": "app/MDKLCAPOnboardExTaskUI/i18n/i18n.properties",
+    "name": "i18n.properties",
+    "path": "app/MDKLCAPOnboardExTaskUI/i18n/i18n.properties",
+    "tags": [
+      "item",
+      "i18n",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Style",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Styles/Styles.less",
+    "name": "Styles.less",
+    "path": "app/MDKLCAPOnboardExTaskUI/Styles/Styles.less",
+    "tags": [
+      "item",
+      "style",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Page",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Pages/Main.page",
+    "name": "Main",
+    "path": "app/MDKLCAPOnboardExTaskUI/Pages/Main.page",
+    "tags": [
+      "item",
+      "page",
+      "ui",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Service",
+    "ref": "../service/lcaponboardex/",
+    "name": "../service/lcaponboardex/",
+    "path": "app/MDKLCAPOnboardExTaskUI/Services/service1.service",
+    "tags": [
+      "item",
+      "service",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Global",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Globals/AppDefinition_Version.global",
+    "name": "AppDefinition_Version.global",
+    "path": "app/MDKLCAPOnboardExTaskUI/Globals/AppDefinition_Version.global",
+    "tags": [
+      "item",
+      "global",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/ClosePage.action",
+    "name": "ClosePage.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/ClosePage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/Logout.action",
+    "name": "Logout.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/Logout.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/Service/InitializeOnline.action",
+    "name": "InitializeOnline.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/Service/InitializeOnline.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/Service/InitializeOnlineFailureMessage.action",
+    "name": "InitializeOnlineFailureMessage.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/Service/InitializeOnlineFailureMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/Service/InitializeOnlineSuccessMessage.action",
+    "name": "InitializeOnlineSuccessMessage.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/Service/InitializeOnlineSuccessMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/UserTask/DecisionUpdateEntity.action",
+    "name": "DecisionUpdateEntity.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/UserTask/DecisionUpdateEntity.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/UserTask/DecisionUpdateEntityFailureMessage.action",
+    "name": "DecisionUpdateEntityFailureMessage.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/UserTask/DecisionUpdateEntityFailureMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Action",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Actions/UserTask/DecisionUpdateEntitySuccessMessage.action",
+    "name": "DecisionUpdateEntitySuccessMessage.action",
+    "path": "app/MDKLCAPOnboardExTaskUI/Actions/UserTask/DecisionUpdateEntitySuccessMessage.action",
+    "tags": [
+      "item",
+      "action",
+      "mdk"
+    ]
+  },
+  {
+    "type": "com.sap.mdk/Application",
+    "ref": "app/MDKLCAPOnboardExTaskUI/Application.app",
+    "name": "MDKLCAPOnboardExTaskUI",
+    "path": "app/MDKLCAPOnboardExTaskUI/Application.app",
+    "tags": [
+      "item",
+      "application",
+      "mdk"
+    ],
+    "sourceTemplate": {
+      "id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+      "version": "1.40.12"
+    },
+    "links": [
+      {
+        "linkType": "DEPENDS_ON",
+        "type": "com.sap.cap/Service",
+        "ref": "/service/lcaponboardex"
+      }
+    ]
+  },
+  {
+    "type": "com.sap.mdk/TaskUI",
+    "ref": "app/MDKLCAPOnboardExTaskUI/.project.json",
+    "name": "TaskUI",
+    "path": "app/MDKLCAPOnboardExTaskUI/Web/MDKModule",
+    "tags": [
+      "item",
+      "taskui",
+      "mdk"
+    ],
+    "links": [
+      {
+        "linkType": "HAS_DEPENDENCY",
+        "type": "com.sap.workflow/Model",
+        "ref": "workflow/workflows/lcaponboardex.workflow"
+      }
+    ]
+  },
+  {
+    "type": "com.sap.security/Role",
+    "name": "lcaponboardexManager",
+    "ref": "lcaponboardexManager",
+    "path": "xs-security.json",
+    "tags": [
+      "item",
+      "xsuaa"
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "name": "mocklcap",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^5",
+    "@sap/cds-compiler": "^2.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {}
+}
