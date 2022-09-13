@@ -1,4 +1,4 @@
-# Enterprise Capital Expenditure Management Application v2
+# Enterprise Capital Expenditure Management Application v3
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-lcnc-espm)](https://api.reuse.software/info/github.com/SAP-samples/btp-lcnc-espm)
 
