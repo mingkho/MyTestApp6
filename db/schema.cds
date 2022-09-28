@@ -32,7 +32,8 @@ entity Capex : managed, workflow.TaskEnabled
     opex : String;
     currency : Currency;
     roi : String;
-    irr : String;
+    irr : String
+        @mandatory;
     country : Country;
     business_unit : Association to one BusinessUnits;
     description : String;

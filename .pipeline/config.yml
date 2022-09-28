@@ -13,18 +13,18 @@ stages:
   Acceptance:
     cloudFoundryDeploy: true
     cfApiEndpoint: "https://api.cf.sap.hana.ondemand.com"
-    cfOrg: "LCAP_qa"
-    cfSpace: "qa"
-    cfCredentialsId: "mingkho"
+    cfOrg: "LCAP_int"
+    cfSpace: "QA"
+    cfCredentialsId: "ming-kho-cf"
     uiVeri5ExecuteTests: false
   Compliance:
     sonarExecuteScan: false
   Release:
-    cloudFoundryDeploy: true
-    cfApiEndpoint: "https://api.cf.sap.hana.ondemand.com"
-    cfOrg: "LCAP_int"
-    cfSpace: "dev"
-    cfCredentialsId: "mingkho"
+    cloudFoundryDeploy: false
+    cfApiEndpoint: ""
+    cfOrg: ""
+    cfSpace: ""
+    cfCredentialsId: ""
     tmsUpload: false
 steps:
   artifactPrepareVersion:

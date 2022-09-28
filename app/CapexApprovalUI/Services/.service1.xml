@@ -208,6 +208,9 @@
         </Annotation>
         <Annotation Term="Core.Description" String="{i18n>CurrencyCode.Description}"/>
       </Annotations>
+      <Annotations Target="MainOnlineService.Capex/irr">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
       <Annotations Target="MainOnlineService.Capex/country">
         <Annotation Term="Common.Label" String="{i18n>Country}"/>
         <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>

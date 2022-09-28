@@ -22,15 +22,6 @@ build-parameters:
         - bash -c "export PATH=$PATH:$(pwd)/node_modules/.bin"
         - cds build --production
 modules:
-  - name: capex-workflow
-    type: com.sap.application.content
-    path: workflow
-    requires:
-      - name: capex-service-workflow
-        parameters:
-          content-target: true
-      - name: capex-service-uaa
-      - name: capex-service-html5-apps-repo-host
   - name: capex-CapexApprovalUI
     type: html5
     path: app/CapexApprovalUI
@@ -76,7 +67,6 @@ modules:
     requires:
       - name: capex-service-uaa
       - name: capex-service-db
-      - name: capex-service-workflow
   - name: capex-srv
     type: nodejs
     path: gen/srv
@@ -94,7 +84,6 @@ modules:
     requires:
       - name: capex-service-uaa
       - name: capex-service-db
-      - name: capex-service-workflow
       - name: capex-service-destination
       - name: capex-service-metadata
       - name: capex-service-connectivity
@@ -106,10 +95,6 @@ modules:
         subaccount:
           existing_destinations_policy: update
           destinations:
-            - Authentication: OAuth2JWTBearer
-              Name: capex-service-workflow
-              ServiceInstanceName: capex-workflow
-              ServiceKeyName: capex-workflow-key
             - Name: capex-service-sdm
               ServiceInstanceName: capex-sdm
               ServiceKeyName: capex-sdm-key
@@ -131,10 +116,6 @@ modules:
     build-parameters:
       no-source: true
     requires:
-      - name: capex-service-workflow
-        parameters:
-          service-key:
-            name: capex-workflow-key
       - name: capex-service-sdm
         parameters:
           service-key:
@@ -191,12 +172,6 @@ modules:
           content-target: true
 resources:
   - type: org.cloudfoundry.managed-service
-    name: capex-service-workflow
-    parameters:
-      service: workflow
-      service-plan: standard
-      service-name: capex-workflow
-  - type: org.cloudfoundry.managed-service
     name: capex-service-uaa
     parameters:
       service: xsuaa
@@ -214,12 +189,6 @@ resources:
             name: capex-CapexWrite-${space}
             role-template-references:
               - $XSAPPNAME.CapexWrite
-  - type: org.cloudfoundry.managed-service
-    name: capex-service-html5-apps-repo-host
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-host
-      service-name: capex-html5-apps-repo-host
   - type: org.cloudfoundry.managed-service
     name: capex-service-db
     parameters:
@@ -261,3 +230,9 @@ resources:
       service: sdm
       service-plan: standard
       service-name: capex-sdm
+  - type: org.cloudfoundry.managed-service
+    name: capex-service-html5-apps-repo-host
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+      service-name: capex-html5-apps-repo-host
