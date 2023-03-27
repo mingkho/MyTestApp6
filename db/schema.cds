@@ -55,3 +55,10 @@ entity BusinessUnits : managed
     key business_unit : String;
     name : String;
 }
+
+entity TestEntity
+{
+    key ID : UUID
+        @Core.Computed;
+    Name : String(100);
+}
